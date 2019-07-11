@@ -28,10 +28,9 @@ public class ForkJoinCompute extends RecursiveTask<Long> {
         }
         int mid = (end-start)/2;
         ForkJoinCompute task1 = new ForkJoinCompute(numbers, start, mid);
-        task1.fork(); //start asynchronously
-
         ForkJoinCompute task2 = new ForkJoinCompute(numbers, mid, end);
 
+        task1.fork(); //start asynchronously
         Long task2Result = task2.compute();
         Long task1Result = task1.join();
 
